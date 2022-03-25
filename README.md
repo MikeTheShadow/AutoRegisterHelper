@@ -1,15 +1,15 @@
 # AutoRegisterLib
 
-##A Library For automating the registration of various plugin functions
+## A Library For automating the registration of various plugin functions
 
-###Repository
+### Repository
 ```xml
 <repository>
     <id>miketheshadow.repo</id>
     <url>https://maven.miketheshadow.ca</url>
 </repository>
 ```
-###Dependency
+### Dependency
 ```xml
 <dependency>
     <groupId>com.miketheshadow.autoregister</groupId>
@@ -18,7 +18,7 @@
 </dependency>
 ```
 #
-###Current Features
+### Current Features
 
 | Features                   | 
 |----------------------------|
@@ -27,16 +27,16 @@
 | Full Command Registration  |
 | AutoWired plugin injection |
 #
-###Planned Features
+### Planned Features
 
 | Planned | 
 |---------|
 | ???     |
 
 
-###Usage/Examples
+### Usage/Examples
 #
-####Initializing AutoRegister
+#### Initializing AutoRegister
 ```java
 public final class ExamplePlugin extends JavaPlugin {
 
@@ -55,7 +55,7 @@ public final class ExamplePlugin extends JavaPlugin {
 }
 ```
 #
-###Annotating a command class
+### Annotating a command class
 
 ```java
 
@@ -74,7 +74,7 @@ public class TestCommand implements CommandExecutor {
 }
 ```
 #
-###Plugin auto-injection
+### Plugin auto-injection
 
 ```java
 import com.miketheshadow.autoregister.annotations.InjectPlugin;
