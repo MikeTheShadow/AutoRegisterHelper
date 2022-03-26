@@ -44,7 +44,9 @@ public final class ExamplePlugin extends JavaPlugin {
     public void onEnable() {
         // Creating an auto-register for the base package the plugin is contained in
         AutoRegister autoRegister = new AutoRegister(this,"com.miketheshadow.exampleplugin");
-        
+        autoRegister.enableDebugMessages();
+        // Start collection of all classes. Allows you to set configuration options above
+        autoRegister.start();
         /* 
         Running default setup registers all classes annotated with 
         the command annotations or any listeners

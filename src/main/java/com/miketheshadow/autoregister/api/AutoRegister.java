@@ -37,9 +37,18 @@ public final class AutoRegister extends ReflectionBase {
      *                    Do not pass in something like com. or com.name as this could have the unintended
      *                    effect of registering any library's listeners as well.
      */
+    public AutoRegister(Plugin plugin, String packageName,boolean forceRegister) {
+        this.plugin = plugin;
+        this.packageName = packageName;
+        this.force = forceRegister;
+    }
+
     public AutoRegister(Plugin plugin, String packageName) {
         this.plugin = plugin;
         this.packageName = packageName;
+    }
+
+    public void start() {
         this.classes = collectAllClasses();
     }
 

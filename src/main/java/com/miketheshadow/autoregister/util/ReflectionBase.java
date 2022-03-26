@@ -2,7 +2,6 @@ package com.miketheshadow.autoregister.util;
 
 import com.miketheshadow.autoregister.annotations.InjectPlugin;
 import com.miketheshadow.autoregister.api.AutoRegister;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
@@ -60,8 +59,13 @@ public class ReflectionBase {
                 }
 
                 if (name.contains(searchName) && name.endsWith(".class")) {
-                    Class<?> clazz = classLoader.loadClass(name.replace(".class", "")
-                            .replaceAll("/", "."));
+                    Class<?> clazz;
+                    try {
+                        clazz = classLoader.loadClass(name.replace(".class", "")
+                                .replaceAll("/", "."));
+                    } catch (Exception e) {
+                        continue;
+                    }
                     try {
                         for (Field field : clazz.getDeclaredFields()) {
                             field.setAccessible(true);
@@ -76,6 +80,7 @@ public class ReflectionBase {
             }
             return classes;
         } catch (Exception e) {
+            debugLog("Error loading classes! Unable to recover.");
             e.printStackTrace();
         }
         debugLog("Total classes loaded: " + classes.size());
@@ -121,14 +126,7 @@ public class ReflectionBase {
         return this;
     }
 
-    /**
-     * Enables the force loading of all classes.
-     * In some circumstances it's possible for things to not work as intended.
-     * force loading all classes will create a more significant delay on the
-     * speed of loading and should only be used if listeners are not registering properly.
-     *
-     * @return The instance of {@link AutoRegister}.
-     */
+
     public ReflectionBase forceLoadAllClasses() {
         this.force = true;
         return this;
