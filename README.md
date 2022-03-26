@@ -14,7 +14,7 @@
 <dependency>
     <groupId>com.miketheshadow.autoregister</groupId>
     <artifactId>AutoRegister</artifactId>
-    <version>0.4.1</version>
+    <version>0.5</version>
 </dependency>
 ```
 #
