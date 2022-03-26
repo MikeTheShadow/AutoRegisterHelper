@@ -58,7 +58,7 @@ public final class AutoRegister extends ReflectionBase {
             registerFullCommands();
             debugLog("Setup complete!");
         } catch (Exception e) {
-            Bukkit.getLogger().severe("Unable to register events with message: " + e.getMessage());
+            plugin.getLogger().severe("Unable to register events with message: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -83,7 +83,7 @@ public final class AutoRegister extends ReflectionBase {
                 } catch (IllegalAccessException | IllegalArgumentException ignored) {
                 }
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-                Bukkit.getLogger().severe("Unable to register listener: " + clazz.getName() + "!");
+                plugin.getLogger().severe("Unable to register listener: " + clazz.getName() + "!");
                 e.printStackTrace();
             }
         }
@@ -158,7 +158,7 @@ public final class AutoRegister extends ReflectionBase {
                 commandExecutor = (CommandExecutor) clazz.getDeclaredConstructor().newInstance();
                 command.setExecutor(commandExecutor);
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-                Bukkit.getLogger().severe("Unable to register command: " + commandName + "!");
+                plugin.getLogger().severe("Unable to register command: " + commandName + "!");
                 e.printStackTrace();
                 continue;
             }

@@ -100,12 +100,12 @@ public class ReflectionBase {
 
     public void debugLog(String message) {
         if (debugLogging) {
-            Bukkit.getLogger().info(message);
+            plugin.getLogger().info(message);
         }
     }
 
     public void error(String message) {
-        Bukkit.getLogger().severe(message);
+        plugin.getLogger().severe(message);
     }
 
 
