@@ -59,6 +59,7 @@ public final class AutoRegister extends ReflectionBase {
      */
     public void defaultSetup() {
         try {
+            this.classes = collectAllClasses();
             debugLog("Registering listeners...");
             registerListeners();
             debugLog("Registering commands...");
@@ -204,7 +205,7 @@ public final class AutoRegister extends ReflectionBase {
      * @return returns a Set of classes that implement Spigot's Listener class
      */
     public Set<Class<?>> getListeners() {
-        Set<Class<?>> listeners = classes.stream().filter(Listener.class::isAssignableFrom).collect(Collectors.toSet());
+        Set<Class<?>> listeners = getClasses().stream().filter(Listener.class::isAssignableFrom).collect(Collectors.toSet());
         debugLog("Found: " + listeners.size() + " listeners.");
         return listeners;
     }

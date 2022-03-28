@@ -80,7 +80,7 @@ public class ReflectionBase {
             }
             return classes;
         } catch (Exception e) {
-            debugLog("Error loading classes! Unable to recover.");
+            error("Error loading classes! Unable to recover.");
             e.printStackTrace();
         }
         debugLog("Total classes loaded: " + classes.size());
@@ -98,7 +98,7 @@ public class ReflectionBase {
         if (!annotation.isAnnotation()) {
             throw new IllegalStateException("Class " + annotation.getName() + " is not an annotation!");
         }
-        Set<Class<?>> annotated = classes.stream().filter(clazz -> clazz.getAnnotation(annotation) != null).collect(Collectors.toSet());
+        Set<Class<?>> annotated = getClasses().stream().filter(clazz -> clazz.getAnnotation(annotation) != null).collect(Collectors.toSet());
         debugLog("Found: " + annotated.size() + " classes annotated with " + annotation.getName());
         return annotated;
     }
@@ -113,7 +113,6 @@ public class ReflectionBase {
         plugin.getLogger().severe(message);
     }
 
-
     /**
      * Enable debug messages.
      * Currently, the names of everything registered and the sizes/amounts of classes loaded are all that
@@ -126,7 +125,6 @@ public class ReflectionBase {
         return this;
     }
 
-
     public ReflectionBase forceLoadAllClasses() {
         this.force = true;
         return this;
@@ -136,6 +134,7 @@ public class ReflectionBase {
      * @return a set of every class in your project.
      */
     public Set<Class<?>> getClasses() {
+        if(classes == null) throw new IllegalStateException("Classes is null! Make sure you've run start (this will be fixed when the builder is impl)");
         return classes;
     }
 }
